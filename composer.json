@@ -1,0 +1,23 @@
+{
+    "name": "cron-eu/cron-jobs",
+    "type": "typo3-cms-extension",
+    "description": "Scheduler tasks",
+    "homepage": "https://github.com/cron-eu/t3x-cron-jobs",
+    "license": ["GPL-2.0-or-later"],
+    "keywords": ["TYPO3 CMS"],
+    "version": "1.0.0",
+    "require": {
+        "php": "^8.0",
+        "typo3/cms-scheduler": "^10.4 || ^11.5 || ^12.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cron\\CronJobs\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "cron_jobs"
+        }
+    }
+}

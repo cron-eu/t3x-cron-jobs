@@ -1,0 +1,20 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Cron\CronJobs\:
+    resource: '../Classes/*'
+
+  Cron\CronJobs\Command\SyncCommand:
+    tags:
+      - name: 'console.command'
+        command: 'cronjobs:sync'
+        schedulable: false
+
+  Cron\CronJobs\Command\ExportCommand:
+    tags:
+      - name: 'console.command'
+        command: 'cronjobs:export'
+        schedulable: false
