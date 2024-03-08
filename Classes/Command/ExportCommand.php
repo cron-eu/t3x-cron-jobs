@@ -21,9 +21,20 @@ use TYPO3\CMS\Scheduler\Task\ExecuteSchedulableCommandTask;
 class ExportCommand extends Command
 {
 
-    protected ?SymfonyStyle $io = null;
-    protected ?array $conf = null;
-    protected ?DatabaseTasksService $databaseTasksService = null;
+    /**
+     * @var SymfonyStyle|null $io
+     */
+    protected $io = null;
+
+    /**
+     * @var array null
+     */
+    protected $conf = null;
+
+    /**
+     * @var DatabaseTasksService|null
+     */
+    protected $databaseTasksService = null;
 
     public function injectDatabaseTasksService(DatabaseTasksService $databaseTasksService)
     {
@@ -108,7 +119,7 @@ class ExportCommand extends Command
             $yamlTasks[$identifier] = $yamlTask;
         }
 
-        echo Yaml::dump($yamlTasks, 4);
+        echo Yaml::dump(['tasks' => $yamlTasks], 5);
 
         return Command::SUCCESS;
     }

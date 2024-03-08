@@ -11,8 +11,15 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class SyncCommand extends Command
 {
 
-    protected ?SymfonyStyle $io = null;
-    protected ?array $conf = null;
+    /**
+     * @var SymfonyStyle|null
+     */
+    protected $io = null;
+
+    /**
+     * @var array|null
+     */
+    protected $conf = null;
 
     public function injectSyncTasks(SyncTasksService $syncTasksService)
     {

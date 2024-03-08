@@ -30,11 +30,21 @@ class SyncTasksService
 
     public const CONFIG_FILENAME = 'scheduler/tasks.yaml';
 
-    private SymfonyStyle $io;
+    /**
+     * @var SymfonyStyle
+     */
+    protected $io;
+
+    /**
+     * @var DatabaseTasksService
+     */
+    protected $databaseTaskService;
 
     public function __construct(
-        protected DatabaseTasksService $databaseTaskService
-    ) { }
+        DatabaseTasksService $databaseTaskService
+    ) {
+        $this->databaseTaskService = $databaseTaskService;
+    }
 
     public function run(SymfonyStyle $io)
     {

@@ -16,7 +16,10 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
 class DatabaseTasksService
 {
 
-    protected ?int $taskGroupUid = null;
+    /**
+     * @var int|null
+     */
+    protected $taskGroupUid = null;
 
     /**
      * Adds or updates one existing task in the database
@@ -91,7 +94,7 @@ class DatabaseTasksService
             ->where(
                 $queryBuilder->expr()->neq('tx_cronjobs_identifier', $queryBuilder->createNamedParameter('', Connection::PARAM_STR))
             )
-            ->executeQuery();
+            ->execute();
         $mapping = [];
         while ($row = $result->fetchAssociative()) {
             $mapping[$row['tx_cronjobs_identifier']] = $row;
@@ -112,7 +115,7 @@ class DatabaseTasksService
             ->getQueryBuilderForTable('tx_scheduler_task');
         return $queryBuilder->select('*')
             ->from('tx_scheduler_task')
-            ->executeQuery()
+            ->execute()
             ->fetchAllAssociative();
     }
 
@@ -139,7 +142,7 @@ class DatabaseTasksService
                 $queryBuilder->createNamedParameter('cron_jobs', Connection::PARAM_STR)
             )
             )
-            ->executeQuery()
+            ->execute()
             ->fetchOne();
 
         if (empty($uid)) {
