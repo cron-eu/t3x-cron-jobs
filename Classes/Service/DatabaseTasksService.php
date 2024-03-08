@@ -16,7 +16,10 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
 class DatabaseTasksService
 {
 
-    protected ?int $taskGroupUid = null;
+    /**
+     * @var int|null
+     */
+    protected $taskGroupUid = null;
 
     /**
      * Adds or updates one existing task in the database
