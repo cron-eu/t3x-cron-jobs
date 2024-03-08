@@ -119,7 +119,7 @@ class ExportCommand extends Command
             $yamlTasks[$identifier] = $yamlTask;
         }
 
-        echo Yaml::dump($yamlTasks, 4);
+        echo Yaml::dump(['tasks' => $yamlTasks], 5);
 
         return Command::SUCCESS;
     }
