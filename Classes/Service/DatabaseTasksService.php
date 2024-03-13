@@ -63,6 +63,10 @@ class DatabaseTasksService
             );
         }
 
+        // Make sure to save the taskUid in the task itself
+        $task->setTaskUid($uid);
+        $task->save();
+
         return $uid;
     }
 

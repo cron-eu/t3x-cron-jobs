@@ -87,7 +87,7 @@ class SyncTasksService
             }
             unset($remaining[$identifier]);
 
-            $sha1 = sha1(serialize($taskDetails));
+            $sha1 = sha1(serialize($taskDetails) . 'v2');
             if (isset($dbTasks[$identifier])) {
                 // Yaml task is already in the database
                 if ($dbTasks[$identifier]['tx_cronjobs_sha1'] !== $sha1) {
@@ -167,7 +167,7 @@ class SyncTasksService
 
         }
 
-        $task->registerRecurringExecution(0, $taskDetails['interval'] ?? null, 0, false, $taskDetails['cronCmd'] ?? null);
+        $task->registerRecurringExecution($GLOBALS['EXEC_TIME'], $taskDetails['interval'] ?? null, 0, false, $taskDetails['cronCmd'] ?? null);
         $task->setDisabled($taskDetails['disabled'] ?? false);
         $task->setDescription($identifier . (isset($taskDetails['description']) ? ': ' . $taskDetails['description'] : ''));
         $task->setTaskGroup($this->databaseTaskService->getTaskGroupUid());
