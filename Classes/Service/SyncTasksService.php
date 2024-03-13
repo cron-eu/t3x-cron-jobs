@@ -87,7 +87,7 @@ class SyncTasksService
             }
             unset($remaining[$identifier]);
 
-            $sha1 = sha1(serialize($taskDetails));
+            $sha1 = sha1(serialize($taskDetails) . 'v2');
             if (isset($dbTasks[$identifier])) {
                 // Yaml task is already in the database
                 if ($dbTasks[$identifier]['tx_cronjobs_sha1'] !== $sha1) {
