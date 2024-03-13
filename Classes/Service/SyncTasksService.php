@@ -167,7 +167,7 @@ class SyncTasksService
 
         }
 
-        $task->registerRecurringExecution(0, $taskDetails['interval'] ?? null, 0, false, $taskDetails['cronCmd'] ?? null);
+        $task->registerRecurringExecution($GLOBALS['EXEC_TIME'], $taskDetails['interval'] ?? null, 0, false, $taskDetails['cronCmd'] ?? null);
         $task->setDisabled($taskDetails['disabled'] ?? false);
         $task->setDescription($identifier . (isset($taskDetails['description']) ? ': ' . $taskDetails['description'] : ''));
         $task->setTaskGroup($this->databaseTaskService->getTaskGroupUid());
